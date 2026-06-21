@@ -72,14 +72,12 @@ const loginUser = asyncHandler(async (req, res) => {
 const logoutUser = asyncHandler(async (req, res) => {
   res.cookie('token', '', {
     httpOnly: true,
+    secure: true,
+    sameSite: 'none',
     expires: new Date(0),
   });
 
   res.status(200).json({ message: 'Logged out successfully' });
-});
-
-const getMe = asyncHandler(async (req, res) => {
-  res.status(200).json(req.user);
 });
 
 module.exports = {
